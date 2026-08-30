@@ -1,9 +1,9 @@
-name: pulseops CI
+name: PulseOps CI
 
 on:
   push:
     branches:
-      - main:
+      - main
 
 jobs:
   test:
@@ -11,23 +11,21 @@ jobs:
 
     steps:
       - name: Checkout-latest
-      - user: actions/checkout@v4
+        uses: actions/checkout@v4
 
-
-      - name: set up python
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install dependencies
         run: |
-          pip Install -r requirements.txt
+          pip install -r requirements.txt
 
-      - name: runs tests
+      - name: Run tests
         run: |
           pytest
 
-      - name: build Docker image 
+      - name: Build Docker image
         run: |
           docker build -t pulseops:test .
-        
