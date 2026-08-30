@@ -1,0 +1,33 @@
+name: pulseops CI
+
+on:
+  push:
+    branches:
+      - main:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout-latest
+      - user: actions/checkout@v4
+
+
+      - name: set up python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip Install -r requirements.txt
+
+      - name: runs tests
+        run: |
+          pytest
+
+      - name: build Docker image 
+        run: |
+          docker build -t pulseops:test .
+        
