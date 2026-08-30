@@ -3,7 +3,11 @@ name: PulseOps CI
 on:
   push:
     branches:
-      - main
+      - main    
+
+permissions:
+  contents: read
+  packages: write 
 
 jobs:
   test:
@@ -28,4 +32,17 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t pulseops:test .
+          docker build \
+            -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
+
+      - name: Login to GHCR 
+        uses: docker/login-actions@v3
+        with:
+          registry: ghcr.io
+          username: ${{secrets.actor}} 
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository }}:${{github.sha}}
+                   
