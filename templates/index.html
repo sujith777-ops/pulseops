@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseOps | Production Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="logo">P</div>
+            <div>
+                <h2>PulseOps</h2>
+                <span>Platform Engineering</span>
+            </div>
+        </div>
+
+        <nav>
+            <a class="active">Dashboard</a>
+            <a>Deployments</a>
+            <a>Services</a>
+            <a>Infrastructure</a>
+            <a>Monitoring</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="status-dot"></div>
+            <div>
+                <strong>Production</strong>
+                <span>All systems operational</span>
+            </div>
+        </div>
+    </aside>
+
+
+    <main class="main">
+
+        <header>
+            <div>
+                <p class="eyebrow">PRODUCTION ENVIRONMENT</p>
+                <h1>Deployment Dashboard</h1>
+                <p class="subtitle">
+                    Monitor application health and infrastructure status.
+                </p>
+            </div>
+
+            <div class="environment">
+                <span class="green-dot"></span>
+                Production
+            </div>
+        </header>
+
+
+        <section class="metrics">
+
+            <div class="card metric">
+                <span class="label">APPLICATION STATUS</span>
+                <strong class="healthy">Healthy</strong>
+                <span>All services responding normally</span>
+            </div>
+
+            <div class="card metric">
+                <span class="label">CURRENT VERSION</span>
+                <strong>v{{ version }}</strong>
+                <span>Production release</span>
+            </div>
+
+            <div class="card metric">
+                <span class="label">UPTIME</span>
+                <strong>99.98%</strong>
+                <span>Last 30 days</span>
+            </div>
+
+        </section>
+
+
+        <section class="grid">
+
+            <div class="card deployments">
+                <div class="section-title">
+                    <div>
+                        <span class="label">RELEASE PIPELINE</span>
+                        <h2>Recent Deployments</h2>
+                    </div>
+                    <span class="badge">CI/CD ACTIVE</span>
+                </div>
+
+                <div class="deployment">
+                    <div class="release-icon">✓</div>
+                    <div class="release-info">
+                        <strong>v{{ version }}</strong>
+                        <span>Production deployment</span>
+                    </div>
+                    <span class="success">Deployed</span>
+                </div>
+
+                <div class="deployment">
+                    <div class="release-icon">✓</div>
+                    <div class="release-info">
+                        <strong>v0.9.0</strong>
+                        <span>Previous release</span>
+                    </div>
+                    <span class="success">Deployed</span>
+                </div>
+
+                <div class="deployment">
+                    <div class="release-icon rollback">↩</div>
+                    <div class="release-info">
+                        <strong>v0.8.1</strong>
+                        <span>Failed health check</span>
+                    </div>
+                    <span class="warning">Rolled back</span>
+                </div>
+
+            </div>
+
+
+            <div class="card infrastructure">
+
+                <div class="section-title">
+                    <div>
+                        <span class="label">INFRASTRUCTURE</span>
+                        <h2>System Status</h2>
+                    </div>
+                </div>
+
+                <div class="system">
+                    <span>EC2 Production Server</span>
+                    <span class="online">Online</span>
+                </div>
+
+                <div class="system">
+                    <span>Docker Engine</span>
+                    <span class="online">Running</span>
+                </div>
+
+                <div class="system">
+                    <span>Container</span>
+                    <span class="online">Healthy</span>
+                </div>
+
+                <div class="system">
+                    <span>GitHub Actions</span>
+                    <span class="online">Operational</span>
+                </div>
+
+                <div class="system">
+                    <span>Container Registry</span>
+                    <span class="online">Connected</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <span>PulseOps Platform</span>
+            <span>Version {{ version }}</span>
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
